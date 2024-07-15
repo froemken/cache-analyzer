@@ -15,7 +15,7 @@
     />
     <project title="Cache Analyzer"
              release="1.0"
-             version="1.0.0"
+             version="1.0.1"
              copyright="since 2024 by Stefan Froemken &amp; contributors"
     />
     <inventory id="t3coreapi"
