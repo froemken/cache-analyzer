@@ -14,6 +14,4 @@ namespace StefanFroemken\CacheAnalyzer\Hook\Exception;
  * This exception will be thrown, if a cache expression record with activates exception handling matches an invalid
  * cache entry
  */
-class PreventStoringFalseCacheEntryException extends \Exception
-{
-}
+class PreventStoringFalseCacheEntryException extends \Exception {}

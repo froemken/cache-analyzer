@@ -22,7 +22,7 @@ class CacheExpressionRepository
 
     public function __construct(
         readonly private DataMapper $dataMapper,
-        readonly private LoggerInterface $logger
+        readonly private LoggerInterface $logger,
     ) {}
 
     /**
@@ -42,7 +42,7 @@ class CacheExpressionRepository
                 ->from(self::TABLE)
                 ->where(
                     $queryBuilder->expr()->neq('title', $queryBuilder->createNamedParameter('')),
-                    $queryBuilder->expr()->neq('expression', $queryBuilder->createNamedParameter(''))
+                    $queryBuilder->expr()->neq('expression', $queryBuilder->createNamedParameter('')),
                 )
                 ->executeQuery();
 
@@ -54,7 +54,7 @@ class CacheExpressionRepository
                 sprintf(
                     'Error while querying table %s: %s',
                     self::TABLE,
-                    $exception->getMessage()
+                    $exception->getMessage(),
                 )
             );
         }
