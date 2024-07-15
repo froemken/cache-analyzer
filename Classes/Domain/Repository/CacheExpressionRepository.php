@@ -28,7 +28,7 @@ class CacheExpressionRepository
     /**
      * @return CacheExpression[]
      */
-    public function getCacheExpressionRecords(): array
+    public function getCacheExpressions(): array
     {
         $cacheExpressions = [];
         if (($connectionPool = $this->getConnectionPool()) === null) {

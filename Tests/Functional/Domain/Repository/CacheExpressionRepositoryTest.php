@@ -40,7 +40,7 @@ class CacheExpressionRepositoryTest extends FunctionalTestCase
     {
         self::assertSame(
             [],
-            $this->subject->getCacheExpressionRecords(),
+            $this->subject->getCacheExpressions(),
         );
     }
 
@@ -49,7 +49,7 @@ class CacheExpressionRepositoryTest extends FunctionalTestCase
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_cacheanalyzer_expression.csv');
 
-        $cacheExpressions = $this->subject->getCacheExpressionRecords();
+        $cacheExpressions = $this->subject->getCacheExpressions();
 
         // Just 2 as the first record has no title and will not be taken into account
         self::assertCount(

@@ -71,6 +71,15 @@ class CacheExpression
 
     public function getExpression(): string
     {
+        if ($this->isRegexp) {
+            $expression = str_replace(
+                '/',
+                '\/',
+                $this->expression
+            );
+            return '/' . $expression . '/';
+        }
+
         return $this->expression;
     }
 
