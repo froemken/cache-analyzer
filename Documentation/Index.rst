@@ -44,10 +44,7 @@ Analyze data sent to TYPO3 Caching Framework before it is written
     Introduction/Index
     Installation/Index
     Configuration/Index
-    Editor/Index
-    Templates/Index
-    Developer/Index
-    KnownProblems/Index
+    ChangeLog/Index
 
 ..  Meta Menu
 
