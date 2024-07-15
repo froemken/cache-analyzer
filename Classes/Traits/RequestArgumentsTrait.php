@@ -25,16 +25,25 @@ trait RequestArgumentsTrait
         return $request->getParsedBody()[$key] ?? $request->getQueryParams()[$key];
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getGetArguments(): array
     {
         return $this->getServerRequest()->getQueryParams();
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getPostArguments(): array
     {
         return $this->getServerRequest()->getParsedBody() ?? [];
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getMergedPostAndGetValues(): array
     {
         $request = $this->getServerRequest();

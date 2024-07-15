@@ -12,7 +12,10 @@ namespace StefanFroemken\CacheAnalyzer\UserFunc;
 
 class RegisteredCacheConfigurationsUserFunc
 {
-    public function getCacheConfigurations(array &$parameters, mixed $reference): void
+    /**
+     * @param array<mixed> $parameters
+     */
+    public function getCacheConfigurations(array &$parameters): void
     {
         foreach ($this->getRegisteredCacheConfigurations() as $registeredBackend) {
             $parameters['items'][] = [
@@ -23,6 +26,9 @@ class RegisteredCacheConfigurationsUserFunc
 
     }
 
+    /**
+     * @return string[]
+     */
     protected function getRegisteredCacheConfigurations(): array
     {
         $cacheConfigurations = $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'] ?? [];

@@ -8,9 +8,10 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace StefanFroemken\CacheAnalyzer\Tests\Domain\Model;
+namespace StefanFroemken\CacheAnalyzer\Tests\Unit\Domain\Model;
 
 use StefanFroemken\CacheAnalyzer\Domain\Model\CacheExpression;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class CacheExpressionTest extends UnitTestCase
 {

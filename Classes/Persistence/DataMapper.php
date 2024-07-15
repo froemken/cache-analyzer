@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DataMapper
 {
     /**
+     * @param array<int, array<string, mixed>> $rows
      * @return CacheExpression[]
      */
     public function map(array $rows): array
@@ -27,7 +28,10 @@ class DataMapper
         return $cacheExpressions;
     }
 
-    protected function mapSingleRow(array $row)
+    /**
+     * @param array<string, mixed> $row
+     */
+    protected function mapSingleRow(array $row): CacheExpression
     {
         $cacheExpression = $this->createEmptyCacheExpression();
         $this->thawProperties($cacheExpression, $row);
@@ -35,6 +39,9 @@ class DataMapper
         return $cacheExpression;
     }
 
+    /**
+     * @param array<string, mixed> $row
+     */
     protected function thawProperties(CacheExpression $cacheExpression, array $row): void
     {
         foreach ($row as $columnName => $value) {

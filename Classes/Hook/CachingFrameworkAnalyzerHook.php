@@ -29,13 +29,13 @@ class CachingFrameworkAnalyzerHook
 
     public function __construct(
         readonly private LoggerInterface $logger,
-        readonly private CacheExpressionRepository $cacheExpressionRepository
+        readonly private CacheExpressionRepository $cacheExpressionRepository,
     ) {}
 
     /**
      * Analyze the data. If it matches create a new log entry
      *
-     * @param array $parameters Contains entryIdentifier, variable, tags and lifetime
+     * @param array{'entryIdentifier': string, "variable": string, "tags": array{mixed}, "lifetime": int} $parameters
      * @throws PreventStoringFalseCacheEntryException
      */
     public function analyze(array $parameters, VariableFrontend $frontend): void
@@ -56,7 +56,7 @@ class CachingFrameworkAnalyzerHook
         $matchingExpressions = $this->getExpressionsMatchingVariable(
             $cacheEntry,
             $frontend,
-            $this->cacheExpressionRepository->getCacheExpressionRecords()
+            $this->cacheExpressionRepository->getCacheExpressionRecords(),
         );
         foreach ($matchingExpressions as $cacheExpression) {
             $this->createLogEntry(
@@ -85,7 +85,7 @@ class CachingFrameworkAnalyzerHook
             ) {
                 throw new PreventStoringFalseCacheEntryException(
                     '[cache_analyzer] CF logger prevents inserting invalid cache entry',
-                    1720993875
+                    1720993875,
                 );
             }
         }
@@ -93,11 +93,12 @@ class CachingFrameworkAnalyzerHook
 
     /**
      * @param CacheExpression[] $cacheExpressions
+     * @return CacheExpression[]
      */
     protected function getExpressionsMatchingVariable(
         string $cacheEntry,
         FrontendInterface $frontend,
-        array $cacheExpressions
+        array $cacheExpressions,
     ): array {
         $matchingExpressions = [];
         foreach ($cacheExpressions as $cacheExpression) {
@@ -111,7 +112,7 @@ class CachingFrameworkAnalyzerHook
                 }
             } catch (\Exception $exception) {
                 $this->logger->error(
-                    '[cache_analyzer] Error occurred while analyzing cache entry: ' . $exception->getMessage()
+                    '[cache_analyzer] Error occurred while analyzing cache entry: ' . $exception->getMessage(),
                 );
             }
         }
@@ -124,8 +125,8 @@ class CachingFrameworkAnalyzerHook
         if ($cacheExpression->isRegexp()) {
             if (preg_match(
                 '/' . preg_quote($cacheExpression->getExpression(), '/') . '/',
-                $variable)
-            ) {
+                $variable,
+            )) {
                 return true;
             }
         } elseif (mb_strpos($variable, $cacheExpression->getExpression()) !== false) {
@@ -151,7 +152,7 @@ class CachingFrameworkAnalyzerHook
         // warning are not logged.
         $this->logger->error(
             '[cache_analyzer] Query Cache detection. A cache expression matches.',
-            $context
+            $context,
         );
     }
 }
