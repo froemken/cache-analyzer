@@ -35,7 +35,7 @@ class CachingFrameworkAnalyzerHook
     /**
      * Analyze the data. If it matches create a new log entry
      *
-     * @param array $parameters Contains entryIdentifier, variable, tags and lifetime
+     * @param array{'entryIdentifier': string, "variable": string, "tags": array{mixed}, "lifetime": int} $parameters
      * @throws PreventStoringFalseCacheEntryException
      */
     public function analyze(array $parameters, VariableFrontend $frontend): void
@@ -93,6 +93,7 @@ class CachingFrameworkAnalyzerHook
 
     /**
      * @param CacheExpression[] $cacheExpressions
+     * @return CacheExpression[]
      */
     protected function getExpressionsMatchingVariable(
         string $cacheEntry,

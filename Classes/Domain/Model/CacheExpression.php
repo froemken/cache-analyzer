@@ -24,6 +24,9 @@ class CacheExpression
 
     protected string $expression = '';
 
+    /**
+     * @var string[]
+     */
     protected array $cacheConfigurations = [];
 
     public function getTitle(): string
@@ -76,6 +79,9 @@ class CacheExpression
         $this->expression = $expression;
     }
 
+    /**
+     * @return string[]
+     */
     public function getCacheConfigurations(): array
     {
         return $this->cacheConfigurations;
