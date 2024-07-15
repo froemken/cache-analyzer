@@ -2,7 +2,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'Cache Expressions',
+        'title' => 'Cache Expression',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
