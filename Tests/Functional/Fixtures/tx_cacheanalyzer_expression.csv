@@ -1,0 +1,5 @@
+"tx_cacheanalyzer_expression",,,,,,
+,"title","is_regexp","throw_exception","throw_exception_fe_only","expression","cache_configurations"
+,"",0,0,1,"","core"
+,"mb_strpos",0,0,1,"href=\"\"","extbase,runtime"
+,"using reg exp",1,1,1,"[a-z]+","core,di"

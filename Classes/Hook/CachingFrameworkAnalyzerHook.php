@@ -28,8 +28,8 @@ class CachingFrameworkAnalyzerHook
     use RequestArgumentsTrait;
 
     public function __construct(
-        readonly private LoggerInterface $logger,
         readonly private CacheExpressionRepository $cacheExpressionRepository,
+        readonly private LoggerInterface $logger,
     ) {}
 
     /**
@@ -56,8 +56,9 @@ class CachingFrameworkAnalyzerHook
         $matchingExpressions = $this->getExpressionsMatchingVariable(
             $cacheEntry,
             $frontend,
-            $this->cacheExpressionRepository->getCacheExpressionRecords(),
+            $this->cacheExpressionRepository->getCacheExpressions(),
         );
+
         foreach ($matchingExpressions as $cacheExpression) {
             $this->createLogEntry(
                 $parameters['entryIdentifier'],
@@ -124,7 +125,7 @@ class CachingFrameworkAnalyzerHook
     {
         if ($cacheExpression->isRegexp()) {
             if (preg_match(
-                '/' . preg_quote($cacheExpression->getExpression(), '/') . '/',
+                $cacheExpression->getExpression(),
                 $variable,
             )) {
                 return true;
