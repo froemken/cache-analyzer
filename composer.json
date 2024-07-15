@@ -1,0 +1,72 @@
+{
+	"name": "stefanfroemken/cache-analyzer",
+	"type": "typo3-cms-extension",
+	"description": "Analyze data sent to TYPO3 Caching Framework before it is written",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"typo3",
+		"TYPO3 CMS",
+		"cache",
+		"analyzer",
+		"framework"
+	],
+	"homepage": "https://www.typo3lexikon.de/",
+	"authors": [
+		{
+			"name": "Stefan Froemken",
+			"email": "froemken@gmail.com",
+			"role": "Lead Developer"
+		}
+	],
+	"support": {
+		"email": "froemken@gmail.com",
+		"issues": "https://github.com/froemken/cache-analyzer/issues",
+		"source": "https://github.com/froemken/cache-analyzer"
+	},
+	"require": {
+		"ext-pdo": "*",
+		"typo3/cms-core": "^13.0"
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^7.0.2",
+		"phpunit/phpunit": "^9.6",
+		"typo3/coding-standards": "^0.6",
+		"friendsofphp/php-cs-fixer": "^3.14"
+	},
+	"autoload": {
+		"psr-4": {
+			"StefanFroemken\\CacheAnalyzer\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"StefanFroemken\\CacheAnalyzer\\Tests\\": "Tests"
+		}
+	},
+	"replace": {
+		"typo3-ter/cache_analyzer": "self.version",
+		"typo3-ter/cache-analyzer": "self.version"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin",
+		"allow-plugins": {
+			"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "cache_analyzer",
+			"web-dir": ".Build/public"
+		}
+	},
+	"scripts": {
+		"php:fix": ".build/vendor/bin/php-cs-fixer --config=Build/php-cs-fixer/config.php fix Classes Tests",
+		"ci:php:lint": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+		"ci:php:fixer": ".build/vendor/bin/php-cs-fixer --config=Build/php-cs-fixer/config.php fix --dry-run -v --show-progress=dots --diff Classes Tests",
+		"ci:tests:unit": "php -d date.timezone=Europe/Berlin .build/vendor/bin/phpunit -c .build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit",
+		"ci:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; php -d date.timezone=Europe/Berlin .build/vendor/bin/phpunit -c .build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}';"
+	}
+}

@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  StefanFroemken\CacheAnalyzer\:
+    resource: '../Classes/*'
+
+  StefanFroemken\CacheAnalyzer\Hook\CachingFrameworkAnalyzerHook:
+    public: true
+
+  StefanFroemken\CacheAnalyzer\UserFunc\RegisteredCacheBackendsUserFunc:
+    public: true
