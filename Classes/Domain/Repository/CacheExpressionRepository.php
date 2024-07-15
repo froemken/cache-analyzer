@@ -55,7 +55,7 @@ class CacheExpressionRepository
                     'Error while querying table %s: %s',
                     self::TABLE,
                     $exception->getMessage(),
-                )
+                ),
             );
         }
 
