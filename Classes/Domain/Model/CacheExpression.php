@@ -75,7 +75,7 @@ class CacheExpression
             $expression = str_replace(
                 '/',
                 '\/',
-                $this->expression
+                $this->expression,
             );
             return '/' . $expression . '/';
         }

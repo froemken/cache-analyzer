@@ -31,7 +31,7 @@ class CacheExpressionRepositoryTest extends FunctionalTestCase
 
         $this->subject = new CacheExpressionRepository(
             new DataMapper(),
-            $this->createMock(Logger::class)
+            $this->createMock(Logger::class),
         );
     }
 
@@ -60,7 +60,7 @@ class CacheExpressionRepositoryTest extends FunctionalTestCase
         foreach ($cacheExpressions as $cacheExpression) {
             self::assertInstanceOf(
                 CacheExpression::class,
-                $cacheExpression
+                $cacheExpression,
             );
         }
     }

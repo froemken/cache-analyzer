@@ -17,13 +17,11 @@ use StefanFroemken\CacheAnalyzer\Domain\Model\CacheExpression;
 use StefanFroemken\CacheAnalyzer\Domain\Repository\CacheExpressionRepository;
 use StefanFroemken\CacheAnalyzer\Hook\CachingFrameworkAnalyzerHook;
 use StefanFroemken\CacheAnalyzer\Hook\Exception\PreventStoringFalseCacheEntryException;
-use StefanFroemken\CacheAnalyzer\UserFunc\RegisteredCacheConfigurationsUserFunc;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Log\Logger;
-use TYPO3\CMS\Core\SysLog\Action\Cache;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class CachingFrameworkAnalyzerHookTest extends FunctionalTestCase
@@ -50,7 +48,7 @@ class CachingFrameworkAnalyzerHookTest extends FunctionalTestCase
 
         $this->subject = new CachingFrameworkAnalyzerHook(
             $this->cacheExpressionRepositoryMock,
-            $this->loggerMock
+            $this->loggerMock,
         );
     }
 
