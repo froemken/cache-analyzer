@@ -30,7 +30,7 @@ class RegisteredCacheConfigurationsUserFuncTest extends FunctionalTestCase
     }
 
     #[Test]
-    public function getCacheConfigurationsWillReturnEmptyItemsArray(): void
+    public function getCacheConfigurationsWillReturnMoreThanFifeCacheConfigurations(): void
     {
         $parameters = [
             'items' => [],
