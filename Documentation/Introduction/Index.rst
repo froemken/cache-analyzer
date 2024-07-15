@@ -26,6 +26,6 @@ that the site was called with an invalid `L` parameter.
 
 ..  warning::
 
-`cache_analyzer` is a debugging tool and should not be part of production
-mode forever. As it hooks into the Caching Framework it may slow down your
-site. So, please uninstall that extension after you have found your issue.
+    `cache_analyzer` is a debugging tool and should not be part of production
+    mode forever. As it hooks into the Caching Framework it may slow down your
+    site. So, please uninstall that extension after you have found your issue.
